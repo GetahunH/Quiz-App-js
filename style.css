@@ -21,7 +21,7 @@ body{
   box-shadow: 0 10px 25px rgba(0, 0, 0,0.13);
 }
 .config-container{
-  /* display: none; */
+  display: block;
   width: 415px;
   padding: 25px;
   text-align: center;
@@ -71,6 +71,9 @@ body{
   /* padding: 0 30px; */
   justify-content: center;
 }
+.start-quiz-btn{
+  margin-top: 30px;
+}
 .config-container .start-quiz-btn,
 .quiz-footer .next-question-btn,
 .result-container .try-again-btn
@@ -97,7 +100,7 @@ body{
 
 .quiz-container{
   width: 480px;
-  display: block;
+  
 }
 .quiz-container.quiz-header{
   display: flex;
@@ -132,6 +135,7 @@ body{
   background: #32313c;
   align-items: center;
   gap: 5px;
+  transition: .3s ease;
 }
 .quiz-header .quiz-timer span{
   font-size: 1.4rem;
