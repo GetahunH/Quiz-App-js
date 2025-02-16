@@ -1,12 +1,12 @@
 # Quiz App
 A simple and interactive Quiz App built using JavaScript and React JS. This application allows users to test their knowledge by answering multiple-choice questions, receive instant feedback, and track their scores.
 ## Features
-📝 Multiple-choice questions
-✅ Instant feedback on answers
-📊 Score tracking system
-🎨 Responsive design for all devices
-⏳ Optional timer for each question (if implemented)
-🔄 Restart quiz option
+### 📝 Multiple-choice questions
+### ✅ Instant feedback on answers
+### 📊 Score tracking system
+### 🎨 Responsive design for all devices
+### ⏳ Optional timer for each question (if implemented)
+### 🔄 Restart quiz option
 ## Technologies Used
 JavaScript (ES6+)
 HTML & CSS
@@ -25,7 +25,7 @@ To run the project locally, follow these steps:
 3. View your score and feedback at the end.
 4. Restart the quiz if needed.
 ## Future Enhancements
-🔥 Add more question categories
-💾 Save high scores using local storage or a database
-🎵 Sound effects for correct/incorrect answers
-🏆 Leaderboard system
+### 🔥 Add more question categories
+### 💾 Save high scores using local storage or a database
+### 🎵 Sound effects for correct/incorrect answers
+### 🏆 Leaderboard system

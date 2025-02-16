@@ -3,7 +3,7 @@ const quizContainer = document.querySelector('.quiz-container');
 const answerOptions = document.querySelector('.answer-options');
 const nextQuestionBtn = document.querySelector('.next-question-btn');
 const questionStatus = document.querySelector('.question-status');
-const timerDispaly = document.querySelector('.time-duration');
+const timerDisplay = document.querySelector('.time-duration');
 const resultContainer = document.querySelector('.result-container');
 
 //quiz state variables
@@ -13,7 +13,7 @@ let timer=null;
 let quizCategory = "General Knowledge";
 let numberQuestions = 5;
 let currentQuestion = null;
-const questioIndexHistory = [];
+const questionIndexHistory = [];
 let correctAnswerCount = 0;
 
 
@@ -25,16 +25,16 @@ const showQuizResult = () =>{
   document.querySelector('.result-message').innerHTML =resultText;
 }
 // clear and reset timer
-const reseTimer=()=>{
+const resetTimer=()=>{
   clearInterval(timer);
   currentTime=QUIZ_TIME_LIMIT;
-  timerDispaly.textContent=`${currentTime}s`;
+  timerDisplay.textContent=`${currentTime}s`;
 }
 //Initialize and start timer for the current qustion
 const startTimer=()=>{
   timer=setInterval(()=>{
     currentTime--;
-   timerDispaly.textContent=`${currentTime}s`;
+   timerDisplay.textContent=`${currentTime}s`;
     if(currentTime<=0){
       clearInterval(timer);
       highlightCorrectAnswer();
@@ -50,14 +50,14 @@ const startTimer=()=>{
 const getRandomQuestion = () =>{
  const categoryQuestions = questions.find(cat => cat.category.toLowerCase() === quizCategory.toLowerCase()).questions || [];
 //show the results if all questions have been used
-if(questioIndexHistory.length >= Math.min(categoryQuestions.length,numberQuestions)){
+if(questionIndexHistory.length >= Math.min(categoryQuestions.length,numberQuestions)){
 return showQuizResult();
 }
 // filter out already asked questions and choose a random one
- const availaleQuestion = categoryQuestions.filter((_,index)=> !questioIndexHistory.includes(index));
- const randomQuestion = categoryQuestions[Math.floor(Math.random() * categoryQuestions.length)];
+ const availaleQuestion = categoryQuestions.filter((_,index)=> !questionIndexHistory.includes(index));
+ const randomQuestion = availaleQuestion[Math.floor(Math.random() * availaleQuestion.length)];
 //  console.log(randomQuestion);
-questioIndexHistory.push(categoryQuestions.indexOf(randomQuestion))
+questionIndexHistory.push(categoryQuestions.indexOf(randomQuestion))
 return randomQuestion;
 
 }
@@ -86,7 +86,7 @@ const renderQuestion = ()=>{
   currentQuestion  = getRandomQuestion();
    if(!currentQuestion) return;
 
-   reseTimer();
+   resetTimer();
    startTimer();
   //  console.log(currentQuestion); 
 //update the UI
@@ -94,7 +94,7 @@ answerOptions.innerHTML ="";
 nextQuestionBtn.style.visibility='hidden';
 quizContainer.querySelector('.quiz-timer').style.background="#32313c";
  document.querySelector('.question-text').textContent = currentQuestion.question;
- questionStatus.innerHTML = `<b>${questioIndexHistory.length}</b> of <b>${numberQuestions}</b> Question`;
+ questionStatus.innerHTML = `<b>${questionIndexHistory.length}</b> of <b>${numberQuestions}</b> Question`;
  //create option <li> elements and append them, and add click envent listner
  currentQuestion.options.forEach((option, index) => {
   const li = document.createElement("li");
@@ -125,9 +125,9 @@ document.querySelectorAll(".category-option, .question-option").forEach(option =
 });
 //reset the quiz and return to the configuration container
 const resetQuiz=()=>{
-  reseTimer();
+  resetTimer();
   correctAnswerCount=0;
-  questioIndexHistory.length=0;
+  questionIndexHistory.length=0;
   configContainer.style.display='block';
   resultContainer.style.display='none';
 }
